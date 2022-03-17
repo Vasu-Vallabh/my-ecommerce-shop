@@ -1,44 +1,43 @@
-import React from 'react';
-import MenuItemComponent from "../../../components/menu-item/menu-item.component";
-import './directory.styles.scss';
+import DirectoryMenuComponent from "../../directory-menu/directory-menu.component";
 
-function DirectoryMenuComponent() {
-    const menuItems = [
+const Home = () =>  {
+    const categories =  [
         {
             'id': 1,
-            'name': 'Hats',
+            'name': 'hats',
             'img': 'https://i.ibb.co/cvpntL1/hats.png',
+            'url': '/hats',
         },
         {
             'id': 2,
-            'name': 'Jackets',
+            'name': 'jackets',
             'img': 'https://i.ibb.co/px2tCc3/jackets.png',
+            'url': '/jackets',
         },
         {
             'id': 3,
-            'name': 'Sneakers',
+            'name': 'sneakers',
             'img': 'https://i.ibb.co/0jqHpnp/sneakers.png',
+            'url': '/sneakers',
         },
         {
             'id': 4,
-            'name': 'Women',
+            'name': 'women',
             'img': 'https://i.ibb.co/GCCdy8t/womens.png',
+            'url': '/women',
             'size': 'large'
         },
         {
             'id': 5,
             'name': 'Men',
             'img': 'https://i.ibb.co/R70vBrQ/men.png',
+            'url': '/men',
             'size': 'large'
         },
-    ];
-    return (
-        <div className='directory-menu'>
-            {
-                menuItems.map((menu) =>  <MenuItemComponent key={menu.id} menuItem={menu}/>)
-            }
-        </div>
-    );
+    ]
+    return <>
+        <DirectoryMenuComponent categories={categories}/>
+    </>;
 }
 
-export default DirectoryMenuComponent;
+export default Home;
