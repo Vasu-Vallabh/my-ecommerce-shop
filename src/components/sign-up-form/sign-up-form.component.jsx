@@ -1,11 +1,8 @@
 import {useState} from "react";
-import {
-    createAuthUserWithEmailAndPassword,
-    createUserDocumentFromAuth
-} from "../utils/firebase/firebaseConfig.component";
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../utils/firebase/firebaseConfig.component";
 import FormInputComponent from "../form-input/form-input.component";
-import './sign-up-form.styles.scss';
 import ButtonComponent from "../button/button.component";
+import './sign-up-form.styles.scss';
 
 const SignUpFormComponent = () => {
 
@@ -22,7 +19,11 @@ const SignUpFormComponent = () => {
         setForm({...form, [name]: value});
     }
 
-    const handleSubmit = async (event) => {
+    const resetForm = () => {
+        setForm(defaultForm);
+    }
+
+    const handleSignup = async (event) => {
         event.preventDefault();
         if (password === confirmPassword) {
             const {user} = await createAuthUserWithEmailAndPassword(email, password);
@@ -33,15 +34,11 @@ const SignUpFormComponent = () => {
         }
     }
 
-    const resetForm = () => {
-        setForm(defaultForm);
-    }
-
     return <>
         <div className="sign-up-container">
             <h2>Don't have an Account?</h2>
             <span>Sign up with email and password</span>
-            <form onSubmit={(event) => handleSubmit(event)}>
+            <form onSubmit={(event) => handleSignup(event)}>
                 <FormInputComponent
                     label="Display Name"
                     required type='text'
