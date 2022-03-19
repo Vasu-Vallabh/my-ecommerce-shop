@@ -1,9 +1,11 @@
 import { initializeApp } from "firebase/app";
 import {
     getAuth,
-    signInWithRedirect,
     signInWithPopup,
-    GoogleAuthProvider} from "firebase/auth";
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword
+} from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc} from 'firebase/firestore'
 
 const firebaseConfig = {
     apiKey: "AIzaSyB8Mk2mv0_xZKd9otFJ4YmPFnln2GiVlOI",
@@ -23,3 +25,31 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+export const db = getFirestore(firebaseApp);
+export const createUserDocumentFromAuth = async (userAuth, additionalInfo) => {
+    const usersDocRef = await doc(db, 'users', userAuth.uid);
+    const usersSnapshot = await getDoc(usersDocRef);
+    console.log(userAuth);
+    const { displayName, email, } = userAuth;
+    const createdAt = new Date();
+    if(!usersSnapshot.exists()) {
+        try {
+          await setDoc(usersDocRef, {
+              displayName, email, createdAt, ...additionalInfo
+          })
+        } catch (e) {
+            console.log("error in setting the data is: ",e.message());
+        }
+    }
+    return usersDocRef
+}
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    try {
+        return await createUserWithEmailAndPassword(auth, email, password)
+    } catch (e) {
+        return console.log(e.message);
+    }
+}
+
