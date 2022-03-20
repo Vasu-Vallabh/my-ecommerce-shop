@@ -23,15 +23,13 @@ const SignInFormComponent = () => {
 
     const handleSignIn = async (event) => {
         event.preventDefault();
-        const {user} = await signInAuthWithEmailAndPassword(email,password);
-        console.log(user);
+        await signInAuthWithEmailAndPassword(email,password);
         resetForm(defaultForm);
     }
 
     const handleGoogleSignIn = async (event) => {
         event.preventDefault();
-        const {user} = await signInWithGooglePopup();
-        console.log(user);
+        await signInWithGooglePopup();
         resetForm(defaultForm);
     }
 

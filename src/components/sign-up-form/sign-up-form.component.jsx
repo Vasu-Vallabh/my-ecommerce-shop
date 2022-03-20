@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../utils/firebase/firebaseConfig.component";
 import FormInputComponent from "../form-input/form-input.component";
 import ButtonComponent from "../button/button.component";
@@ -25,8 +25,8 @@ const SignUpFormComponent = () => {
 
     const handleSignup = async (event) => {
         event.preventDefault();
-        if (password === confirmPassword) {
-            const {user} = await createAuthUserWithEmailAndPassword(email, password);
+        if ( password === confirmPassword ) {
+            const { user } = await createAuthUserWithEmailAndPassword(email, password);
             await createUserDocumentFromAuth(user, {displayName});
             resetForm(defaultForm);
         } else {
