@@ -2,7 +2,7 @@ import {createContext, useEffect, useState} from "react";
 import {
     createUserDocumentFromAuth,
     onAuthStateChangedListener,
-} from "../components/utils/firebase/firebaseConfig.component";
+} from "../utils/firebase/firebaseConfig.component";
 
 export const UserContext = createContext( {
     currentUser: null,
