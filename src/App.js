@@ -1,12 +1,10 @@
 import './App.scss';
-import Home from "./components/routes/home/home.component";
-import Navigation from "./components/routes/navigation/nav.component";
+import Home from "./routes/home/home.component";
+import Navigation from "./routes/navigation/nav.component";
 import { Routes, Route, Link} from "react-router-dom";
-import AuthenticationComponent from "./components/authentication/authentication.component";
-
-const Shop = () =>  {
-    return <h2>I am the Shop Component</h2>
-}
+import AuthenticationComponent from "./routes/authentication/authentication.component";
+import ShopComponent from "./routes/shop/shop.component";
+import CheckoutComponent from "./routes/checkout/checkout.component";
 
 const NoMatch = () =>  {
     return <>
@@ -22,7 +20,8 @@ const App = () =>  {
               <Route path='/' element={<Navigation/>}>
                   <Route index element={<Home/>}/>
                   <Route path='authentication' element={<AuthenticationComponent/>}/>
-                  <Route path='shop' element={<Shop/>}/>
+                  <Route path='shop/*' element={<ShopComponent/>}/>
+                  <Route path='checkout' element={<CheckoutComponent/>}/>
                   <Route path="*" element={<NoMatch />} />
               </Route>
           </Routes>

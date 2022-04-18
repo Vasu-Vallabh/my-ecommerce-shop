@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signInAuthWithEmailAndPassword, signInWithGooglePopup } from "../utils/firebase/firebaseConfig.component";
+import { signInAuthWithEmailAndPassword, signInWithGooglePopup } from "../../utils/firebase/firebaseConfig.component";
 import FormInputComponent from "../form-input/form-input.component";
 import './sign-in-form.styles.scss';
 import ButtonComponent from "../button/button.component";
